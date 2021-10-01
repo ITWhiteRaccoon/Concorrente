@@ -1,4 +1,4 @@
-package main
+package canais2
 
 func Gerar(c chan int, start, tam int) {
 	for i := start; i < start+tam; i++ {

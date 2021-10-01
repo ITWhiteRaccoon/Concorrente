@@ -1,4 +1,4 @@
-package main
+package canais2
 
 import (
 	"fmt"

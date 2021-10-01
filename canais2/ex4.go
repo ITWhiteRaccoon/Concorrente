@@ -1,4 +1,4 @@
-package main
+package canais2
 
 func Ping(c1, c2, fim chan struct{}, tam, channel int) {
 	for i := 0; i < tam; i++ {

@@ -1,4 +1,4 @@
-package main
+package canais2
 
 //Para executar os codigos é necessario que descomente o exercicio desejado:
 func main() {

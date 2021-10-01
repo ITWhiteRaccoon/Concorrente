@@ -1,4 +1,4 @@
-package main
+package canais2
 
 func GeraMultiplos(c1 chan int, numMult, tam int) {
 	for i := 1; i <= tam; i++ {
