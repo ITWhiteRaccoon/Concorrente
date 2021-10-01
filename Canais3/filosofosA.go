@@ -1,11 +1,12 @@
-package main
+//Eduardo C. Andrade e Julia A. Maia
+package canais3
 
 import (
 	"fmt"
 	"strconv"
 )
 
-func philosopherD(id int, forkLeft, forkRight chan struct{}) {
+func philosopherA(id int, forkLeft, forkRight chan struct{}) {
 	for {
 		fmt.Println(strconv.Itoa(id) + " senta")
 		<-forkLeft
@@ -19,19 +20,19 @@ func philosopherD(id int, forkLeft, forkRight chan struct{}) {
 	}
 }
 
-func runD() {
-	//Usando a quantidade de filósofos, criamos dois garfos para cada
-	const availableForks = PHILOSOPHERS * 2
-	var forkChannels [availableForks]chan struct{}
-	for i := 0; i < availableForks; i++ {
+func runA() {
+	var forkChannels [FORKS]chan struct{}
+	for i := 0; i < FORKS; i++ {
 		forkChannels[i] = make(chan struct{}, 1)
 		forkChannels[i] <- struct{}{} // no inicio garfo esta livre
 	}
-	for i := 0; i < (PHILOSOPHERS); i++ {
+	for i := 0; i < (PHILOSOPHERS - 1); i++ {
 		fmt.Println("Filosofo " + strconv.Itoa(i))
-		//Alterando o método original, cada filósofo recebe um garfo exclusivo, eliminando a chance de deadlock
-		go philosopherD(i, forkChannels[i*2], forkChannels[(i*2)+1])
+		go philosopherA(i, forkChannels[i], forkChannels[(i+1)%PHILOSOPHERS])
 	}
+	//Analisando o problema, concluímos que trocar a ordem dos canais simularia a
+	//troca da ordem em que este filósofo pega os garfos.
+	go philosopherA(PHILOSOPHERS-1, forkChannels[0], forkChannels[PHILOSOPHERS-1])
 	var blq = make(chan struct{})
 	<-blq
 }

@@ -1,5 +1,5 @@
-// TOKEN RING
-package main
+//Eduardo C. Andrade e Julia A. Maia
+package canais3
 
 import "fmt"
 
